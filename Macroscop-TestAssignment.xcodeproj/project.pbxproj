@@ -13,6 +13,7 @@
 		8B8CFB102AF5380900A3B865 /* ChildSECObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8CFB0F2AF5380900A3B865 /* ChildSECObject.swift */; };
 		8B8CFB122AF5438E00A3B865 /* CameraPreviewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8CFB112AF5438E00A3B865 /* CameraPreviewsViewModel.swift */; };
 		8B8CFB152AF55CE500A3B865 /* CameraPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8CFB142AF55CE500A3B865 /* CameraPreview.swift */; };
+		8B8CFB182AF5653500A3B865 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8CFB172AF5653500A3B865 /* Constants.swift */; };
 		8BBE36752AF52A6B0062D3BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBE36742AF52A6B0062D3BF /* AppDelegate.swift */; };
 		8BBE36772AF52A6B0062D3BF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBE36762AF52A6B0062D3BF /* SceneDelegate.swift */; };
 		8BBE367E2AF52A6C0062D3BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8BBE367D2AF52A6C0062D3BF /* Assets.xcassets */; };
@@ -28,6 +29,7 @@
 		8B8CFB0F2AF5380900A3B865 /* ChildSECObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildSECObject.swift; sourceTree = "<group>"; };
 		8B8CFB112AF5438E00A3B865 /* CameraPreviewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewsViewModel.swift; sourceTree = "<group>"; };
 		8B8CFB142AF55CE500A3B865 /* CameraPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreview.swift; sourceTree = "<group>"; };
+		8B8CFB172AF5653500A3B865 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8BBE36712AF52A6B0062D3BF /* Macroscop-TestAssignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Macroscop-TestAssignment.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BBE36742AF52A6B0062D3BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8BBE36762AF52A6B0062D3BF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 			children = (
 				8BBE36742AF52A6B0062D3BF /* AppDelegate.swift */,
 				8BBE36762AF52A6B0062D3BF /* SceneDelegate.swift */,
+				8B8CFB172AF5653500A3B865 /* Constants.swift */,
 				8B8CFB112AF5438E00A3B865 /* CameraPreviewsViewModel.swift */,
 				8BBE36882AF52B760062D3BF /* CamerasPreviewViewController.swift */,
 				8BBE367F2AF52A6C0062D3BF /* LaunchScreen.storyboard */,
@@ -196,6 +199,7 @@
 				8B8CFB122AF5438E00A3B865 /* CameraPreviewsViewModel.swift in Sources */,
 				8B8CFB152AF55CE500A3B865 /* CameraPreview.swift in Sources */,
 				8B8CFB102AF5380900A3B865 /* ChildSECObject.swift in Sources */,
+				8B8CFB182AF5653500A3B865 /* Constants.swift in Sources */,
 				8B8CFB0E2AF537B100A3B865 /* RootSECObject.swift in Sources */,
 				8BBE36752AF52A6B0062D3BF /* AppDelegate.swift in Sources */,
 				8B8CFB0A2AF5379100A3B865 /* ServerConfig.swift in Sources */,

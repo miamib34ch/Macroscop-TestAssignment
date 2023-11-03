@@ -13,8 +13,8 @@ typealias Binding<T> = (T) -> Void
 final class CameraPreviewsViewModel {
     var onResponseReceive: Binding<[CameraPreview]?>?
 
-    func fetchData() {
-        AF.request("http://demo.macroscop.com/configex?login=root&responsetype=json", method: .get).validate().responseDecodable(of: ServerConfig.self) { [weak self] response in
+    func fetchServerConfig() {
+        AF.request(Constants.serverRoot + Constants.serverConfigEndpoint, parameters: ["login": "root", "responsetype": "json"]).validate().responseDecodable(of: ServerConfig.self) { [weak self] response in
             switch response.result {
             case .success(let serverConfig):
                 let cameraPreviews = self?.createCameraPreviews(serverConfig: serverConfig)
