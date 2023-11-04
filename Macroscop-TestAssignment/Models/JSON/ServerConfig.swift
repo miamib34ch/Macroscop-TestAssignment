@@ -10,7 +10,7 @@ import Foundation
 struct ServerConfig: Codable {
     let channels: [Channel]
     let rootSECObject: RootSECObject
-
+    
     enum CodingKeys: String, CodingKey {
         case channels = "Channels"
         case rootSECObject = "RootSecObject"

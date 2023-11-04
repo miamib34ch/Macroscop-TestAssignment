@@ -11,44 +11,61 @@ import Alamofire
 typealias Binding<T> = (T) -> Void
 
 final class CameraPreviewsViewModel {
-    var onServerConfigResponseReceive: Binding<[CameraPreview]?>?
+    // MARK: - fields
 
+    /// Событие, происходящие при окончании загрузки конфигурации сервера
+    var onServerConfigResponseReceive: Binding<[CameraPreviewGroup]?>?
+    /// Превью камер, собранные по группам
+    private(set) var cameraPreviewGroups: [CameraPreviewGroup]?
+
+    /// Переменная, которая хранит запрос на получение конфигурации сервера
+    private var serverConfigRequest: DataRequest?
+
+    // MARK: - internal methods
+
+    /// Метод для загрузки конфигурации сервера
     func fetchServerConfig() {
-        AF.request(Constants.serverRoot + Constants.serverConfigEndpoint, parameters: ["login": "root", "responsetype": "json"]).validate().responseDecodable(of: ServerConfig.self) { [weak self] response in
+        if serverConfigRequest != nil { return } // Если запрос уже выполняется, то ждём окончания
+        serverConfigRequest = AF.request(Constants.serverRoot + Constants.serverConfigEndpoint, parameters: ["login": "root", "responsetype": "json"]).validate().responseDecodable(of: ServerConfig.self) { [weak self] response in
+            guard let self = self else { return }
             switch response.result {
             case .success(let serverConfig):
-                let cameraPreviews = self?.createCameraPreviews(serverConfig: serverConfig)
-                self?.onServerConfigResponseReceive?(cameraPreviews)
+                self.cameraPreviewGroups = self.createCameraPreviewGroups(serverConfig: serverConfig)
+                self.onServerConfigResponseReceive?(cameraPreviewGroups)
             case .failure(let error):
-                print("CamerasPreviewViewModel_fetchServerConfig_error: \(error.localizedDescription)")
-                self?.onServerConfigResponseReceive?(nil)
+                print("Ошибка в CamerasPreviewViewModel_fetchServerConfig: \(error.localizedDescription)")
+                self.onServerConfigResponseReceive?(nil)
             }
+            self.serverConfigRequest = nil
         }
     }
 
-    func fetchPreviewImage(cameraId: String) async throws -> Data {
-        let data = try await withCheckedThrowingContinuation { continuation in
-            AF.request(Constants.serverRoot + Constants.serverMobileEndpoint, parameters: ["channelid": "\(cameraId)", "oneframeonly": "true", "login": "root", "withcontenttype": "true"]).validate().responseData { response in
-                switch response.result {
-                case .success(let data):
-                    continuation.resume(returning: data)
-                case .failure(let error):
-                    print("CamerasPreviewViewModel_fetchPreviewImage_error: \(error.localizedDescription)")
-                    continuation.resume(throwing: error)
+    /// Метод для загрузки картинки камеры
+    func fetchPreviewImage(cameraId: String, completion: @escaping (Data) -> Void) -> DataRequest {
+        AF.request(Constants.serverRoot + Constants.serverMobileEndpoint, parameters: ["channelid": "\(cameraId)", "oneframeonly": "true", "login": "root", "withcontenttype": "true"]).validate().responseData { response in
+            switch response.result {
+            case .success(let data):
+                completion(data)
+            case .failure(let error):
+                if !error.isExplicitlyCancelledError {
+                    print("Ошибка в CamerasPreviewViewModel_fetchPreviewImage: \(error.localizedDescription)")
                 }
             }
         }
-        return data
     }
+    
+    // MARK: - private methods
 
-    private func createCameraPreviews(serverConfig: ServerConfig) -> [CameraPreview] {
-        var cameraPreviews: [CameraPreview] = []
-        for chanel in serverConfig.channels {
-            for section in serverConfig.rootSECObject.childSECObjects where section.childChannels.contains(chanel.id) {
-                cameraPreviews.append(CameraPreview(cameraId: chanel.id, cameraName: chanel.name, cameraGroup: section.name))
-                break
-            }
+    /// Метод для создание групп, каждая со своими превью камер
+    private func createCameraPreviewGroups(serverConfig: ServerConfig) -> [CameraPreviewGroup] {
+        let cameraPreviewGroups: [CameraPreviewGroup] = serverConfig.rootSECObject.childSECObjects.map { group in
+            let cameraPreviews: [CameraPreview] = serverConfig.channels
+                .filter { channel in group.childChannels.contains(channel.id) }
+                .map { channel in
+                    return CameraPreview(cameraId: channel.id, cameraName: channel.name)
+                }
+            return CameraPreviewGroup(groupName: group.name, cameraPreviews: cameraPreviews)
         }
-        return cameraPreviews
+        return cameraPreviewGroups
     }
 }

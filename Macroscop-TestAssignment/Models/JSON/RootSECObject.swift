@@ -9,7 +9,7 @@ import Foundation
 
 struct RootSECObject: Codable {
     let childSECObjects: [ChildSECObject]
-
+    
     enum CodingKeys: String, CodingKey {
         case childSECObjects = "ChildSecObjects"
     }

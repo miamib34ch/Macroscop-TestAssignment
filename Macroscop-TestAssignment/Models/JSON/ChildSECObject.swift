@@ -10,7 +10,7 @@ import Foundation
 struct ChildSECObject: Codable {
     let childChannels: [String]
     let name: String
-
+    
     enum CodingKeys: String, CodingKey {
         case childChannels = "ChildChannels"
         case name = "Name"

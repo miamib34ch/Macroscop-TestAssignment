@@ -10,5 +10,4 @@ import Foundation
 struct CameraPreview {
     let cameraId: String
     let cameraName: String
-    let cameraGroup: String
 }
