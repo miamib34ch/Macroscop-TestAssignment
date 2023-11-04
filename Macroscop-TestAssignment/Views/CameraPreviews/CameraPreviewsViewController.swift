@@ -73,6 +73,7 @@ final class CameraPreviewsViewController: UIViewController {
         UIApplication.shared.windows.first?.isUserInteractionEnabled = true
     }
 
+    /// Метод, где связываем события ViewModel с View
     private func bind() {
         viewModel.onServerConfigResponseReceive = { [weak self] response in
             guard let self = self else { return }
