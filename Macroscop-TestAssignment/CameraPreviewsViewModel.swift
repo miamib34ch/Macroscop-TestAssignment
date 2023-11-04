@@ -5,7 +5,7 @@
 //  Created by Богдан Полыгалов on 03.11.2023.
 //
 
-import Foundation
+import UIKit
 import Alamofire
 
 typealias Binding<T> = (T) -> Void
@@ -53,7 +53,20 @@ final class CameraPreviewsViewModel {
             }
         }
     }
-    
+
+    /// Метод, который возвращает алерт с сообщением о сетевой ошибке и кнопкой повторить
+    func takeErrorAlert(completion: @escaping () -> Void) -> UIAlertController {
+        let alertTitle = NSLocalizedString("alert.title", comment: "Название алерта")
+        let alertMessage = NSLocalizedString("alert.message", comment: "Сообщение в алерте")
+        let alertActionTitle = NSLocalizedString("alert.action.again", comment: "Название действия повторения в алерте")
+        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: alertActionTitle, style: .default) { [weak self] _ in
+            self?.fetchServerConfig()
+            completion()
+        })
+        return alert
+    }
+
     // MARK: - private methods
 
     /// Метод для создание групп, каждая со своими превью камер
