@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  Macroscop-TestAssignment
+
+  Created by Богдан Полыгалов on 04.11.2023.
+  
+*/
+
+CFBundleDisplayName = "Test Assignment";

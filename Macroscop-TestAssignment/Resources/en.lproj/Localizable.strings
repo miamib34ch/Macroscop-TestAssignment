@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  Macroscop-TestAssignment
+
+  Created by Богдан Полыгалов on 04.11.2023.
+  
+*/
+
+alert.title = "Error";
+alert.message = "An error occurred while loading data. Please try again.";
+alert.action.again = "Retry";
