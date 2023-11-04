@@ -21,6 +21,7 @@
 		8B8CFB252AF594AF00A3B865 /* CameraPreviewReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8CFB242AF594AF00A3B865 /* CameraPreviewReusableView.swift */; };
 		8B8CFB2A2AF67A4400A3B865 /* CameraPreviewGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8CFB292AF67A4400A3B865 /* CameraPreviewGroup.swift */; };
 		8B8CFB302AF6909100A3B865 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8B8CFB322AF6909100A3B865 /* Localizable.strings */; };
+		8B8CFB3A2AF6962B00A3B865 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8B8CFB3C2AF6962B00A3B865 /* InfoPlist.strings */; };
 		8BBE36752AF52A6B0062D3BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBE36742AF52A6B0062D3BF /* AppDelegate.swift */; };
 		8BBE36772AF52A6B0062D3BF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBE36762AF52A6B0062D3BF /* SceneDelegate.swift */; };
 		8BBE367E2AF52A6C0062D3BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8BBE367D2AF52A6C0062D3BF /* Assets.xcassets */; };
@@ -45,6 +46,8 @@
 		8B8CFB292AF67A4400A3B865 /* CameraPreviewGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewGroup.swift; sourceTree = "<group>"; };
 		8B8CFB312AF6909100A3B865 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8B8CFB332AF6909400A3B865 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		8B8CFB3B2AF6962B00A3B865 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		8B8CFB3D2AF6962C00A3B865 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8BBE36712AF52A6B0062D3BF /* Macroscop-TestAssignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Macroscop-TestAssignment.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BBE36742AF52A6B0062D3BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8BBE36762AF52A6B0062D3BF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -110,9 +113,10 @@
 		8B8CFB2C2AF67E1800A3B865 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8BBE367D2AF52A6C0062D3BF /* Assets.xcassets */,
 				8B8CFB202AF58BFF00A3B865 /* Fonts.swift */,
 				8B8CFB322AF6909100A3B865 /* Localizable.strings */,
-				8BBE367D2AF52A6C0062D3BF /* Assets.xcassets */,
+				8B8CFB3C2AF6962B00A3B865 /* InfoPlist.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -224,6 +228,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8BBE36812AF52A6C0062D3BF /* LaunchScreen.storyboard in Resources */,
+				8B8CFB3A2AF6962B00A3B865 /* InfoPlist.strings in Resources */,
 				8B8CFB302AF6909100A3B865 /* Localizable.strings in Resources */,
 				8BBE367E2AF52A6C0062D3BF /* Assets.xcassets in Resources */,
 			);
@@ -286,6 +291,15 @@
 				8B8CFB332AF6909400A3B865 /* en */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		8B8CFB3C2AF6962B00A3B865 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8B8CFB3B2AF6962B00A3B865 /* ru */,
+				8B8CFB3D2AF6962C00A3B865 /* en */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 		8BBE367F2AF52A6C0062D3BF /* LaunchScreen.storyboard */ = {
@@ -432,7 +446,6 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Macroscop-TestAssignment/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = CamerasPreview;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -465,7 +478,6 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Macroscop-TestAssignment/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = CamerasPreview;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
