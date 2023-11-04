@@ -8,12 +8,16 @@
 import UIKit
 
 final class CameraPreviewReusableView: UICollectionReusableView, ReusableHeaderIdentifying {
+    // MARK: - fields
+
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .label
         label.font = UIFont.headline3
         return label
     }()
+
+    // MARK: - override & required methods
 
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -29,9 +33,13 @@ final class CameraPreviewReusableView: UICollectionReusableView, ReusableHeaderI
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - internal methods
+
     func setTitle(text: String) {
         titleLabel.text = text
     }
+
+    // MARK: - private methods
 
     private func setView() {
         backgroundColor = .clear
