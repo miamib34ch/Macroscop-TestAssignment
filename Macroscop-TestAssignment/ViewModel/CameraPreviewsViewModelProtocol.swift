@@ -13,6 +13,7 @@ protocol CameraPreviewsViewModelProtocol {
     var cameraPreviewGroups: [CameraPreviewGroup]? { get }
     
     func fetchServerConfig()
-    func fetchPreviewImage(cameraId: String, completion: @escaping (Data) -> Void) -> DataRequest
+    func fetchPreviewImage(cameraId: String, completion: @escaping (Data) -> Void) -> DataStreamRequest
     func takeErrorAlert(completion: @escaping () -> Void) -> UIAlertController
+    func updateFrameCompleteness(of currentFrameData: Data?, with responseData: Data, completion: (UIImage) -> Void) -> Data
 }

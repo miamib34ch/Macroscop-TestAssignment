@@ -12,7 +12,9 @@ final class CameraPreviewCell: UICollectionViewCell, ReuseIdentifying {
     // MARK: - fields
 
     /// Переменная, в которой запоминаем, есть ли запрос на картинку у клеточки. Нужна, поскольку нужно отменить запрос при переиспользовании. Если не отменить запрос при переиспользовании, то у ячейки может быть неправильная картинка, поскольку загрузка асинхронная.
-    var task: DataRequest?
+    var task: DataStreamRequest?
+    // Переменная, в которой хранятся байты полученного изображения. Обновляется когда байты составляют новое превью камеры.
+    var currentFrameData: Data?
 
     private let placeholder = UIImage(named: "placeholder")
     private let imageView: UIImageView = {
@@ -38,6 +40,7 @@ final class CameraPreviewCell: UICollectionViewCell, ReuseIdentifying {
         super.prepareForReuse()
         task?.cancel()
         task = nil
+        currentFrameData = nil
         imageView.image = placeholder
         nameLabel.text = ""
     }

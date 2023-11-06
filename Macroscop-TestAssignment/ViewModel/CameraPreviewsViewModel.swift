@@ -40,16 +40,16 @@ final class CameraPreviewsViewModel: CameraPreviewsViewModelProtocol {
         }
     }
 
-    /// Метод для загрузки картинки камеры
-    func fetchPreviewImage(cameraId: String, completion: @escaping (Data) -> Void) -> DataRequest {
-        AF.request(Constants.serverRoot + Constants.serverMobileEndpoint, parameters: ["channelid": "\(cameraId)", "oneframeonly": "true", "login": "root", "withcontenttype": "true"]).validate().responseData { response in
-            switch response.result {
+    /// Метод для загрузки MJPEG потока с камеры
+    func fetchPreviewImage(cameraId: String, completion: @escaping (Data) -> Void) -> DataStreamRequest {
+        AF.streamRequest(Constants.serverRoot + Constants.serverMobileEndpoint, parameters: ["channelid": "\(cameraId)", "oneframeonly": "false", "login": "root", "withcontenttype": "true"]).validate().responseStream { stream in
+            switch stream.result {
             case .success(let data):
                 completion(data)
             case .failure(let error):
-                if !error.isExplicitlyCancelledError {
-                    print("Ошибка в CamerasPreviewViewModel_fetchPreviewImage: \(error.localizedDescription)")
-                }
+                print("Ошибка в CamerasPreviewViewModel_fetchPreviewImage: \(error.localizedDescription)")
+            default:
+                break
             }
         }
     }
@@ -67,6 +67,33 @@ final class CameraPreviewsViewModel: CameraPreviewsViewModelProtocol {
         return alert
     }
 
+    /// Метод, который возвращает обновлённые данные кадра. Нужен поскольку нам приходит непрерывный поток данных, из которого мы собираем каждый кадр.
+    func updateFrameCompleteness(of currentFrameData: Data?, with responseData: Data, completion: (UIImage) -> Void) -> Data {
+        var frameData = currentFrameData ?? Data()
+
+        // Добавляем новые данные кадра к уже имеющимся
+        frameData.append(responseData)
+
+        // Если оба (SoI и EoI) маркера MJPEG есть в последовательности данных
+        if let soiRange = frameData.range(of: Constants.startOfImageMarker),
+           let eoiRange = frameData.range(of: Constants.endOfImageMarker) {
+            // Извлекаем данные текущего кадра
+            let currentFrameData = frameData[soiRange.lowerBound..<eoiRange.upperBound]
+
+            // Декодируем данные текущего кадра в изображение
+            if let image = UIImage(data: currentFrameData) {
+                // Обрабатываем полученное изображение
+                completion(image)
+            }
+
+            // Удаляем обработанные данные текущего кадра
+            frameData.removeSubrange(frameData.startIndex..<eoiRange.upperBound)
+        }
+
+        // Обновляем данные текущего кадра после обработки
+        return frameData
+    }
+    
     // MARK: - private methods
 
     /// Метод для создание групп, каждая со своими превью камер
