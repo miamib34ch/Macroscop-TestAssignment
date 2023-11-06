@@ -10,7 +10,7 @@ import Alamofire
 
 typealias Binding<T> = (T) -> Void
 
-final class CameraPreviewsViewModel {
+final class CameraPreviewsViewModel: CameraPreviewsViewModelProtocol {
     // MARK: - fields
 
     /// Событие, происходящие при окончании загрузки конфигурации сервера

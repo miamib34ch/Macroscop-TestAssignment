@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B2661FC2AF8C68400DC3748 /* CameraPreviewsViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2661FB2AF8C68400DC3748 /* CameraPreviewsViewModelProtocol.swift */; };
 		8B8CFB0A2AF5379100A3B865 /* ServerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8CFB092AF5379100A3B865 /* ServerConfig.swift */; };
 		8B8CFB0C2AF537A300A3B865 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8CFB0B2AF537A300A3B865 /* Channel.swift */; };
 		8B8CFB0E2AF537B100A3B865 /* RootSECObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8CFB0D2AF537B100A3B865 /* RootSECObject.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8B2661FB2AF8C68400DC3748 /* CameraPreviewsViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewsViewModelProtocol.swift; sourceTree = "<group>"; };
 		8B8CFB092AF5379100A3B865 /* ServerConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerConfig.swift; sourceTree = "<group>"; };
 		8B8CFB0B2AF537A300A3B865 /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		8B8CFB0D2AF537B100A3B865 /* RootSECObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootSECObject.swift; sourceTree = "<group>"; };
@@ -70,6 +72,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8B2661FD2AF8C7DD00DC3748 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				8B2661FB2AF8C68400DC3748 /* CameraPreviewsViewModelProtocol.swift */,
+				8B8CFB112AF5438E00A3B865 /* CameraPreviewsViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		8B8CFB082AF5376B00A3B865 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -152,7 +163,7 @@
 				8BBE36742AF52A6B0062D3BF /* AppDelegate.swift */,
 				8BBE36762AF52A6B0062D3BF /* SceneDelegate.swift */,
 				8B8CFB172AF5653500A3B865 /* Constants.swift */,
-				8B8CFB112AF5438E00A3B865 /* CameraPreviewsViewModel.swift */,
+				8B2661FD2AF8C7DD00DC3748 /* ViewModel */,
 				8B8CFB162AF564BD00A3B865 /* Views */,
 				8B8CFB082AF5376B00A3B865 /* Models */,
 				8B8CFB2D2AF67E4200A3B865 /* Helpers */,
@@ -276,6 +287,7 @@
 				8BBE36752AF52A6B0062D3BF /* AppDelegate.swift in Sources */,
 				8B8CFB0A2AF5379100A3B865 /* ServerConfig.swift in Sources */,
 				8B8CFB2A2AF67A4400A3B865 /* CameraPreviewGroup.swift in Sources */,
+				8B2661FC2AF8C68400DC3748 /* CameraPreviewsViewModelProtocol.swift in Sources */,
 				8BBE36772AF52A6B0062D3BF /* SceneDelegate.swift in Sources */,
 				8B8CFB1F2AF58B7B00A3B865 /* CellsReusingUtils.swift in Sources */,
 			);

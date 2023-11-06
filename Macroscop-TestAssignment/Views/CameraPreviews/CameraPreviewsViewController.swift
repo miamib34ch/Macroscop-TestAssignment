@@ -10,7 +10,7 @@ import UIKit
 final class CameraPreviewsViewController: UIViewController {
     // MARK: - fields
 
-    private let viewModel = CameraPreviewsViewModel()
+    private var viewModel: CameraPreviewsViewModelProtocol = CameraPreviewsViewModel()
 
     private let cameraPreviewsCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     private let cameraPreviewsCollectionViewRefreshControl = UIRefreshControl()
