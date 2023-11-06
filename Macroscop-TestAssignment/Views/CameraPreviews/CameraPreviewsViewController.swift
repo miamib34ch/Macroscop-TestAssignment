@@ -76,13 +76,15 @@ final class CameraPreviewsViewController: UIViewController {
     /// Метод, где связываем события ViewModel с View
     private func bind() {
         viewModel.onServerConfigResponseReceive = { [weak self] response in
-            guard let self = self else { return }
-            self.removeActivityIndicator()
-            switch response {
-            case .some:
-                self.cameraPreviewsCollectionView.reloadData()
-            case .none:
-                self.present(self.viewModel.takeErrorAlert(completion: showActivityIndicator), animated: true)
+            DispatchQueue.main.async {
+                guard let self = self else { return }
+                self.removeActivityIndicator()
+                switch response {
+                case .some:
+                    self.cameraPreviewsCollectionView.reloadData()
+                case .none:
+                    self.present(self.viewModel.takeErrorAlert(completion: self.showActivityIndicator), animated: true)
+                }
             }
         }
         viewModel.fetchServerConfig()
@@ -143,7 +145,9 @@ extension CameraPreviewsViewController: UICollectionViewDataSource {
         guard let cameraPreview = viewModel.cameraPreviewGroups?[indexPath.section].cameraPreviews[indexPath.row] else { return UICollectionViewCell() }
         let cell: CameraPreviewCell = cameraPreviewsCollectionView.dequeueReusableCell(indexPath: indexPath)
         cell.task = viewModel.fetchPreviewImage(cameraId: cameraPreview.cameraId) { data in
-            cell.setImage(image: UIImage(data: data))
+            DispatchQueue.main.async {
+                cell.setImage(image: UIImage(data: data))
+            }
         }
         cell.setNameLabel(name: cameraPreview.cameraName)
         return cell
